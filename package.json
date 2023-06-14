@@ -7,9 +7,13 @@
     "dev": "nodemon node server.js"
   },
   "dependencies": {
+    "@fastify/express": "^2.3.0",
     "@fastify/jwt": "^7.0.0",
+    "@fastify/middie": "^8.3.0",
+    "@fastify/static": "^6.10.2",
     "@fastify/swagger": "^8.5.1",
     "@fastify/swagger-ui": "^1.8.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.1.4",
     "fastify": "^4.18.0",
     "fastify-bcrypt": "^1.0.1",
