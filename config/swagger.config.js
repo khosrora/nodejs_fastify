@@ -5,7 +5,8 @@ export const fastifySwaggerConfig = {
         version: "0.1.0"
     },
     tags: [
-        { name: "products", description: "admin can write and user can read !!! :/" }
+        { name: "products", description: "admin can write and user can read !!! :/" } , 
+        { name: "user", description: "admin can write and user can read !!! :/" } , 
     ],
     host: 'localhost:5000',
     schemes: ["http"],

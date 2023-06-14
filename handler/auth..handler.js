@@ -5,13 +5,17 @@ import { fastify } from "../server.js";
 
 
 export const registerUserHandler = async (req, reply) => {
-    const { first_name, last_name, username, password, } = req.body;
-    const newUser = new User({
-        first_name, last_name, username,
-        password: await fastify.bcrypt.hash(password)
-    })
-    await newUser.save();
-    reply.send(newUser)
+    try {
+        const { first_name, last_name, username, password, } = req.body;
+        const newUser = new User({
+            first_name, last_name, username,
+            password: await fastify.bcrypt.hash(password)
+        })
+        await newUser.save();
+        reply.send(newUser)
+    } catch (error) {
+        reply.send(error)
+    }
 }
 
 
@@ -21,7 +25,7 @@ export const loginRouteHandler = async (req, reply) => {
         where: {
             username
         }
-    })
+    })    
     if (!user) return reply.status(400).send({ message: "username or passowrd in incorect !!" });
     const compareUser = await fastify.bcrypt.compare(password, user.password);
     if (compareUser) {

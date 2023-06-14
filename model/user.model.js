@@ -3,6 +3,7 @@ import {
     sequelize
 } from "../config/sequlize.connection.js";
 
+
 export const User = sequelize.define('User', {
     id: {
         type: DataTypes.INTEGER,
@@ -24,7 +25,47 @@ export const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
     birthday: {
         type: DataTypes.DATE,
+    },
+    accessToken: {
+        type: DataTypes.STRING,
+        defaultValue: ""
     }
 });
+export const UserDetail = sequelize.define("UserDetail", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    address: {
+        type: DataTypes.STRING,
+    },
+    latitudes: {
+        type: DataTypes.STRING
+    },
+    longitudes: {
+        type: 
+        DataTypes.STRING
+    },
+    UserId: {
+        type: DataTypes.INTEGER
+    }
+})
+
+User.hasOne(UserDetail);
+UserDetail.belongsTo(User)
+
+
+// User.sync({ alter: true }).then(() => {
+//     console.log('user sync completed');
+// })
+
+// UserDetail.sync({ alter: true }).then(() => {
+//     console.log('userDetail sync completed');
+// })

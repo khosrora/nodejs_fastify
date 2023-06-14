@@ -8,5 +8,6 @@ export const getOneProduct = function (req, reply) {
 }
 
 export const getAllProducts = function (req, reply) {
+    console.log(req.user);
     reply.send(products)
 }

@@ -17,6 +17,7 @@ import path from "path"
 
 dotEnv.config();
 import "./config/sequlize.connection.js"
+import userRoutes from "./routes/user.routes.js";
 
 export const fastify = Fastify({
     logger: true
@@ -50,13 +51,14 @@ const main = async () => {
 
     fastify.use(cors());
     
-    fastify.use((req, res, next) => {
-        console.log("hello middleware");
-        next()
-    })
+    // fastify.use((req, res, next) => {
+    //     console.log("hello middleware");
+    //     next()
+    // })
     
     fastify.register(indexRoutes)
     fastify.register(productRoutes, { prefix: "products" })
+    fastify.register(userRoutes, { prefix: "user" })
     fastify.register(authRoutes, { prefix: "auth" })
 
 
